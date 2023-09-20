@@ -10,6 +10,9 @@ class Player:
     def score(self):
         self.__score += 1
 
+    def reset_score(self):
+        self.__score = 0
+
     def get_score(self):
         return self.__score
 
@@ -20,7 +23,7 @@ class Player:
 
     def intercept(self, ball):
         intercept_chance = self.skill_rate * \
-            random.uniform(0.5, 1.5) - ball.get_speed() * 0.01
+            random.uniform(0, 1) - ball.get_speed() * 0.01
         return intercept_chance > 0
 
 
