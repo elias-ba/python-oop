@@ -46,30 +46,30 @@ class Circle(Shape):
         return math.pi * (self.radius ** 2)
 
 
-if __name__ == "__main__":
-    shape_name = input(
-        "What is the name of the shape (rectangle, cirlce, or square)? : ")
-    if shape_name == 'circle':
-        radius = input(
-            "What is the radius of your circle (in centimeters)? : ")
-        circle = Circle(float(radius))
-        print(
-            f"Your circle's perimeter is {circle.calculate_perimeter()} cm and it's area is {circle.calculate_area()} cm2")
+class ShapeFactory:
 
-    elif shape_name == 'rectangle':
-        height = input(
-            "What is the height of your rectangle (in centimeters)? : ")
-        width = input(
-            "What is the width of your rectangle (in centimeters)? : ")
-        rectangle = Rectangle(h=float(height), w=float(width))
-        print(
-            f"Your rectangle's perimeter is {rectangle.calculate_perimeter()} cm and it's area is {rectangle.calculate_area()} cm2")
+    known_shapes = ['rectangle', 'circle', 'square']
 
-    elif shape_name == 'square':
-        width = input(
-            "What is the width of your square (in centimeters)? : ")
-        square = Square(w=float(width))
-        print(
-            f"Your square's perimeter is {square.calculate_perimeter()} cm and it's area is {square.calculate_area()} cm2")
-    else:
-        print("Unknown shape, please make sure you give the values : rectangle, square, or circle.")
+    def is_known_shape(self, shape_name):
+        return shape_name in self.known_shapes
+
+    def create_shape(self, shape_name='circle'):
+        if shape_name == 'circle':
+            radius = input(
+                "What is the radius of your circle (in centimeters)? : ")
+            return Circle(float(radius))
+
+        elif shape_name == 'rectangle':
+            height = input(
+                "What is the height of your rectangle (in centimeters)? : ")
+            width = input(
+                "What is the width of your rectangle (in centimeters)? : ")
+            return Rectangle(h=float(height), w=float(width))
+
+        elif shape_name == 'square':
+            width = input(
+                "What is the width of your square (in centimeters)? : ")
+            return Square(w=float(width))
+
+        else:
+            return None
