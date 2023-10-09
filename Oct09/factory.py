@@ -2,7 +2,7 @@ import abc
 import math
 
 
-class Shape(    ):
+class Shape(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def calculate_perimeter(self):
         pass
